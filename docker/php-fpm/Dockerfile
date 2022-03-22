@@ -10,6 +10,7 @@ RUN apt-get update; \
         php8.1-imagick \ 
         php8.1-mcrypt \ 
         php8.1-pgsql \ 
+        php8.1-sqlite3 \
         php8.1-xdebug; \
     apt-get clean; \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
