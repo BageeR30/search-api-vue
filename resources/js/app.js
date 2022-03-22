@@ -21,9 +21,14 @@ require('./bootstrap');
 
 import Vue from 'vue';
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+// Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
 import router from './router.js';
+
+import Element from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+
+Vue.use(Element);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
