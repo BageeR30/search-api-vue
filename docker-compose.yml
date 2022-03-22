@@ -10,6 +10,8 @@ services:
             - '80:80'
         depends_on:
             - php-fpm
+        networks:
+            - sail
 
     php-fpm:
         build: docker/php-fpm
@@ -19,6 +21,8 @@ services:
             - './docker/php-fpm/php-ini-overrides.ini:/etc/php/8.1/fpm/conf.d/99-overrides.ini'
         depends_on:
             - db
+        networks:
+            - sail
 
     node:
         image: node
@@ -31,12 +35,18 @@ services:
     db:
         image: postgres
         environment:
+            POSTGRES_DB: '${DB_DATABASE}'
             POSTGRES_USER: '${DB_USERNAME}'
             POSTGRES_PASSWORD: '${DB_PASSWORD}'
         ports: 
             - '5432:5432'
         volumes: 
             - db-data:/var/lib/postgresql/data
-
+        networks:
+            - sail
+networks:
+    sail:
+        driver: bridge
 volumes:
     db-data:
+        driver: local
